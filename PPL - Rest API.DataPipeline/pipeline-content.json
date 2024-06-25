@@ -1,0 +1,197 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "Copy data from rest API",
+        "type": "Copy",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "source": {
+            "type": "RestSource",
+            "httpRequestTimeout": "00:01:40",
+            "requestInterval": "00.00:00:00.010",
+            "requestMethod": "GET",
+            "paginationRules": {
+              "supportRFC5988": "true"
+            },
+            "datasetSettings": {
+              "annotations": [],
+              "type": "RestResource",
+              "typeProperties": {},
+              "schema": [],
+              "externalReferences": {
+                "connection": "d6a6dc34-5989-4e43-adf3-7ab4a7e04be2"
+              }
+            }
+          },
+          "sink": {
+            "type": "DataWarehouseSink",
+            "allowCopyCommand": true,
+            "copyCommandSettings": {},
+            "tableOption": "autoCreate",
+            "datasetSettings": {
+              "annotations": [],
+              "linkedService": {
+                "name": "WH - Rest API",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "mxpjh24p3f5upeiy5yjxcctbay-7ij5llvygq2ero23uy3qj2asgi.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "b6173c0b-1c89-45d2-a0e2-6c94f53b909e",
+                    "workspaceId": "aed513fa-34b8-4834-bb5b-a63704e81232"
+                  }
+                }
+              },
+              "type": "DataWarehouseTable",
+              "schema": [],
+              "typeProperties": {
+                "schema": "restAPI",
+                "table": "rest_API_data"
+              }
+            }
+          },
+          "enableStaging": true,
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "page",
+                  "type": "Int64"
+                },
+                "sink": {
+                  "name": "page",
+                  "physicalType": "bigint"
+                }
+              },
+              {
+                "source": {
+                  "name": "per_page",
+                  "type": "Int64"
+                },
+                "sink": {
+                  "name": "per_page",
+                  "physicalType": "bigint"
+                }
+              },
+              {
+                "source": {
+                  "name": "total",
+                  "type": "Int64"
+                },
+                "sink": {
+                  "name": "total",
+                  "physicalType": "bigint"
+                }
+              },
+              {
+                "source": {
+                  "name": "total_pages",
+                  "type": "Int64"
+                },
+                "sink": {
+                  "name": "total_pages",
+                  "physicalType": "bigint"
+                }
+              },
+              {
+                "source": {
+                  "name": "data.id",
+                  "type": "Int64"
+                },
+                "sink": {
+                  "name": "data.id",
+                  "physicalType": "bigint"
+                }
+              },
+              {
+                "source": {
+                  "name": "data.email",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "data.email",
+                  "physicalType": "varchar",
+                  "length": "8000"
+                }
+              },
+              {
+                "source": {
+                  "name": "data.first_name",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "data.first_name",
+                  "physicalType": "varchar",
+                  "length": "8000"
+                }
+              },
+              {
+                "source": {
+                  "name": "data.last_name",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "data.last_name",
+                  "physicalType": "varchar",
+                  "length": "8000"
+                }
+              },
+              {
+                "source": {
+                  "name": "data.avatar",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "data.avatar",
+                  "physicalType": "varchar",
+                  "length": "8000"
+                }
+              },
+              {
+                "source": {
+                  "name": "support.url",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "support.url",
+                  "physicalType": "varchar",
+                  "length": "8000"
+                }
+              },
+              {
+                "source": {
+                  "name": "support.text",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "support.text",
+                  "physicalType": "varchar",
+                  "length": "8000"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            },
+            "columnFlattenSettings": {
+              "treatArrayAsString": false,
+              "treatStructAsString": false,
+              "flattenColumnDelimiter": "."
+            }
+          }
+        }
+      }
+    ]
+  }
+}

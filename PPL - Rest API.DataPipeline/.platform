@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "PPL - Rest API"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "4a2d0b99-ce8d-41b5-a9b4-b5c677a9f110"
+  }
+}
